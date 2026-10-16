@@ -11,7 +11,7 @@ You do not need to know anything about AI to use it. The steps below walk you th
 - A computer with a web browser (Chrome, Edge, Safari, or Firefox). You can chat from your phone later, but the setup is easiest on a computer.
 - A free Claude account. As of October 2026, the free plan works with this add-on. Paid plans give you more messages per day.
 - If your Claude account comes from work or school (a Team or Enterprise plan), an admin may have turned off uploading skills or web search. If you cannot find those settings, ask your admin to turn them on.
-- The file named `wow-forever-build-advisor.zip` from this page.
+- The file named `wow-forever-build-advisor.zip`, which a guild officer can send you.
 
 ## Setup (about 10 minutes, one time only)
 
@@ -32,16 +32,12 @@ The add-on uses a small built-in calculator to do the math, so one setting must 
 
 ### Step 3: Download the add-on file
 
-1. Click this link: **[Download wow-forever-build-advisor.zip](https://github.com/KinFolkStudio/wow-forever-build-advisor/raw/main/wow-forever-build-advisor.zip)**
-2. The file goes to your **Downloads** folder.
-
-If the link does not work, click the file named **wow-forever-build-advisor.zip** in the list of files at the top of this page, then click the **download** button (a small arrow pointing down, on the right side).
+1. Ask a guild officer for the file named **wow-forever-build-advisor.zip** (for example, in Discord).
+2. Save it to your **Downloads** folder.
 
 **Do not open or unzip the file.** Claude needs it zipped exactly as it is.
 
 If you use a Mac with Safari, Safari may unzip it on its own and leave a folder instead of a `.zip` file. If that happens, either download it again using Chrome, or right-click the folder, choose **Compress**, and use the new `.zip` file it makes.
-
-If you cannot open this GitHub page, ask a guild officer to send you the `.zip` file directly (for example, in Discord).
 
 ### Step 4: Add it to Claude
 
