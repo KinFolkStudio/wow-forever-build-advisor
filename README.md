@@ -1,6 +1,6 @@
 # WoW Forever Build Advisor
 
-A free add-on for Claude (an AI assistant you chat with) that gives you checked, up-to-date advice for World of Warcraft Forever: talents, stats, gear, professions, dual spec, and getting ready for raids, for every class and spec.
+A free skill for Claude (an AI assistant you chat with). A skill is a set of instructions that teaches Claude a new job. This one gives you checked, up-to-date advice for World of Warcraft Forever: talents, stats, gear, professions, dual spec, and getting ready for raids, for every class and spec.
 
 You ask it questions in plain words, like you would ask a guildmate. It looks things up on the internet that same day, checks them against Blizzard and trusted guide sites, and tells you what is confirmed, what trusted sites disagree on, and what is not confirmed yet. It never makes things up.
 
@@ -9,7 +9,7 @@ You do not need to know anything about AI to use it. The steps below walk you th
 ## What you need
 
 - A computer with a web browser (Chrome, Edge, Safari, or Firefox). You can chat from your phone later, but the setup is easiest on a computer.
-- A free Claude account. As of October 2026, the free plan works with this add-on. Paid plans give you more messages per day.
+- A free Claude account. As of October 2026, the free plan works with this skill. Paid plans give you more messages per day.
 - If your Claude account comes from work or school (a Team or Enterprise plan), an admin may have turned off uploading skills or web search. If you cannot find those settings, ask your admin to turn them on.
 - The file named `wow-forever-build-advisor.zip` from this page.
 
@@ -21,16 +21,16 @@ You do not need to know anything about AI to use it. The steps below walk you th
 2. Sign up with your email or your Google account.
 3. Pick the **Free** plan if it asks.
 
-### Step 2: Turn on the setting the add-on needs
+### Step 2: Turn on the setting the skill needs
 
-The add-on uses a small built-in calculator to do the math, so one setting must be on.
+The skill uses a small built-in calculator to do the math, so one setting must be on.
 
 1. In Claude, click your name or picture in the bottom left corner.
 2. Click **Settings**.
 3. Click **Capabilities**.
 4. Find **Code execution and file creation** and turn it **on**.
 
-### Step 3: Download the add-on file
+### Step 3: Download the skill file
 
 1. Click this link: **[Download wow-forever-build-advisor.zip](https://github.com/KinFolkStudio/wow-forever-build-advisor/raw/main/wow-forever-build-advisor.zip)**
 2. The file goes to your **Downloads** folder.
@@ -40,8 +40,6 @@ If the link does not work, click the file named **wow-forever-build-advisor.zip*
 **Do not open or unzip the file.** Claude needs it zipped exactly as it is.
 
 If you use a Mac with Safari, Safari may unzip it on its own and leave a folder instead of a `.zip` file. If that happens, either download it again using Chrome, or right-click the folder, choose **Compress**, and use the new `.zip` file it makes.
-
-If you cannot open this GitHub page, ask a guild officer to send you the `.zip` file directly (for example, in Discord).
 
 ### Step 4: Add it to Claude
 
@@ -55,7 +53,7 @@ Claude's menus sometimes move around. If something looks different, look for the
 
 ### Step 5: Make sure Claude can search the web
 
-The add-on needs to look things up online.
+The skill needs to look things up online.
 
 1. Start a new chat.
 2. Click the **+** button at the bottom left of the message box.
@@ -67,7 +65,7 @@ That's it. You're set up.
 
 ## How to use it
 
-Start a new chat and just ask. Mentioning "WoW Forever" helps Claude know to use the add-on. Some examples:
+Start a new chat and just ask. Mentioning "WoW Forever" helps Claude know to use the skill. Some examples:
 
 - "I play a Human Warrior in WoW Forever. Help me pick a build for raids."
 - "What is the stat priority for a Holy Priest in WoW Forever?"
@@ -102,7 +100,7 @@ It does not use Reddit, player forum posts, YouTube creators, or guides for othe
 | What you see | What to do |
 | --- | --- |
 | The upload fails | Make sure you picked the `.zip` file, not a folder, and that you did not rename it. Download it again if needed. |
-| It doesn't seem to use the add-on | Check that its switch is on in **Customize, Skills**. Then include "WoW Forever" in your question, or say "Use the WoW Forever Build Advisor skill." |
+| It doesn't seem to use the skill | Check that its switch is on in **Customize, Skills**. Then include "WoW Forever" in your question, or say "Use the WoW Forever Build Advisor skill." |
 | It says it can't run code or calculate | Turn on **Code execution and file creation** in **Settings, Capabilities** (Step 2). |
 | It can't look anything up | Turn on **Web search** (Step 5). |
 | Lots of "not confirmed yet" | Normal right after a patch or during testing. Guide sites usually catch up within a few days. Ask again later. |
@@ -112,9 +110,9 @@ It does not use Reddit, player forum posts, YouTube creators, or guides for othe
 
 It only needs game information: class, spec, level, professions, and how you like to play. Never share your Battle.net login, password, or personal details with it or anyone.
 
-## For guild officers (keeping it up to date)
+## How to keep this up to date
 
-The add-on itself does not need updates to stay current, because it looks everything up fresh each time. You only need to change it if you want to change how it works (for example, adding a trusted website).
+The skill does not need updates to stay current, because it looks everything up fresh each time you ask. It only changes when its instructions change (for example, when a trusted website is added).
 
 What's inside:
 
@@ -127,19 +125,14 @@ What's inside:
 | `wow-forever-build-advisor/references/output-style.md` | How answers are written so anyone aged 8 to 80 can follow them |
 | `wow-forever-build-advisor/scripts/claim_ledger.py` | Keeps track of each fact and decides if it is confirmed |
 | `wow-forever-build-advisor/scripts/stat_math.py` | Does all the math |
-| `wow-forever-build-advisor.zip` | The ready-to-upload file for players |
-| `tests/` | Automatic checks for the two Python tools (not part of the add-on) |
+| `wow-forever-build-advisor.zip` | The ready-to-upload skill file |
+| `tests/` | Automatic checks for the two Python tools (not part of the skill) |
 
-After changing anything in the `wow-forever-build-advisor` folder, rebuild the `.zip` file so players get the new version:
+**To get a newer version:** download the `.zip` file again (Step 3), then in Claude delete the old skill and upload the new one (Step 4).
 
-1. Right-click the `wow-forever-build-advisor` folder (the folder itself, not the files inside it).
-2. On Windows, choose **Compress to**, then **ZIP file**. On a Mac, choose **Compress**.
-3. Name the new file exactly `wow-forever-build-advisor.zip` and use it to replace the old one.
-4. Tell players to delete the old skill in Claude and upload the new one.
+**If you change the skill yourself:** after editing anything in the `wow-forever-build-advisor` folder, rebuild the `.zip` file. Right-click the folder itself (not the files inside it). On Windows, choose **Compress to**, then **ZIP file**. On a Mac, choose **Compress**. Name the new file exactly `wow-forever-build-advisor.zip`. To run the automatic checks, open a terminal in this folder and run `python -m unittest discover tests`.
 
-To run the checks on your own computer, open a terminal in this folder and run `python -m unittest discover tests`.
-
-Players who prefer a different AI assistant can read these files and adapt them. The fact-checking and math tools are written in plain Python with nothing extra to install.
+**Using a different AI assistant:** you can read these files and adapt them. The fact-checking and math tools are plain Python with nothing extra to install.
 
 ## License
 
