@@ -1,0 +1,47 @@
+name: Wrong information
+description: An answer said something about the game that is not right.
+title: "Wrong info: "
+labels: [wrong-info]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for checking the facts. Never include passwords or personal details.
+  - type: input
+    id: version
+    attributes:
+      label: Which version?
+      description: The end of the answer says "Build Advisor" and a number.
+      placeholder: "1.1.0"
+    validations:
+      required: true
+  - type: input
+    id: class-spec
+    attributes:
+      label: Class and spec
+      placeholder: "Warrior, Fury"
+    validations:
+      required: true
+  - type: textarea
+    id: wrong
+    attributes:
+      label: What did it say that is wrong?
+      description: Copy the sentence or number from the answer if you can.
+    validations:
+      required: true
+  - type: textarea
+    id: right
+    attributes:
+      label: What is right, and where can we see it?
+      description: A link to Blizzard or a trusted guide site (Icy Veins, Wowhead, Method, Warcraft Tavern, wow.gg, Warcraft Logs) helps most.
+    validations:
+      required: true
+  - type: input
+    id: checked-on
+    attributes:
+      label: The "Checked on" line from the answer (optional)
+  - type: input
+    id: chat-link
+    attributes:
+      label: Link to the chat (optional)
+      description: In Claude, click Share at the top of the chat, then copy the link. Anyone with the link can read that chat, so only share chats without personal details.

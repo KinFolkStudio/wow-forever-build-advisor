@@ -7,9 +7,11 @@ You manage this loop yourself. It has three parts: freshness, the fact ledger, a
 - Get today's date from a clock tool or the conversation. Never assume it.
 - Blizzard's own statements (tier 1) are not limited by the starting point: they stand until a later Blizzard update changes that topic. The starting point only limits guide sites.
 - Some Blizzard pages hold several updates in one thread (for example, development notes "Updated October 15" with earlier dated posts). Treat each dated post as its own update.
-- Set the starting point. Before launch, use the date the current beta began. After launch, use the launch date, or the date of the most recent big patch that Blizzard says changes classes or items across the whole game, whichever is newer. No guide site older than the starting point is ever used.
-- Read every Blizzard update since the starting point (patch notes, hotfix notes, development notes). For each fact you are checking, note whether any update changed its topic: the class, spec, talent, ability, stat rule, item, or profession it is about. Record the newest such update with the `changed` command. That date becomes the fact's own cutoff.
-- When an update is vague about what it changed (for example "class tuning" with no details), treat it as changing every topic it might touch. Be strict, not hopeful.
+- Set the starting point: the date the current beta began. It stays the starting point after launch. No guide site older than the starting point is ever used.
+- **Launch is not a reset.** Beta guides do not all become too old on launch day. Record the launch patch notes like any other update: with the `changed` command, against each topic they change. A topic the launch notes do not touch keeps its beta sources.
+- **The beta is closed.** Until launch, the final beta update is the newest Blizzard update. Read the beta updates once, then do not search for newer ones until launch day.
+- Read the Blizzard updates since the starting point (patch notes, hotfix notes, development notes). For a quick answer, read only what they say about the topic in question. For each fact you are checking, note whether any update changed its topic: the class, spec, talent, ability, stat rule, item, or profession it is about. Record the newest such update with the `changed` command. That date becomes the fact's own cutoff.
+- When an update is vague about what it changed (for example "class tuning" with no details), treat it as changing every topic it might touch. When Blizzard says an update reworks every class or all items, record it as changing every fact in those areas. Be strict, not hopeful.
 - A guide site counts for a fact only if it is dated on or after that fact's cutoff and not after today. Older sources are STALE for that fact.
 - If you cannot find Blizzard's updates at all, tell the player, and use the newest Blizzard update you can confirm as the starting point, saying which one.
 - Which date to use for the update: the date Blizzard writes in the title or body ("Updated October 15"). If Blizzard writes no date, use the posting date shown on the page. Ignore time zone differences in raw timestamps.
@@ -20,10 +22,10 @@ You manage this loop yourself. It has three parts: freshness, the fact ledger, a
 
 Run `scripts/claim_ledger.py`. It keeps facts in a small file (default `ledger.json` in the working folder).
 
-Start a session:
+If a ledger from earlier in this conversation exists and its date is today, keep using it: run `report`, reuse its VERIFIED facts, and add only new ones. Otherwise start a new one:
 
 ```
-python scripts/claim_ledger.py init --today 2026-10-16 --cutoff 2026-09-24 --version "beta, update of October 15"
+python scripts/claim_ledger.py init --today 2026-10-25 --cutoff 2026-09-24 --version "final beta build"
 ```
 
 Record a Blizzard update that changed a fact's topic (do this before or after adding sources, either works):
@@ -33,7 +35,13 @@ python scripts/claim_ledger.py changed --id ret-stat-priority --date 2026-10-15 
   --url https://... --note "Champion of the Light changed"
 ```
 
-Add a fact. The value is what the source says, written short and exact, using the same wording for the same answer so the script can tell when sources agree. Add one source per command:
+Add a fact. The value is what the source says, written short and exact, using the same wording for the same answer so the script can tell when sources agree:
+
+- Numbers as digits, with `%` for percentages: `8%`, not "eight percent". (The script also treats `8 %`, `8 percent`, and `8.0%` as the same as `8%`.)
+- Priority orders as names joined by ` > `, highest first: `Hit > Strength > Crit`.
+- Talent, item, and ability names spelled exactly as on the page.
+
+Add one source per command:
 
 ```
 python scripts/claim_ledger.py add --id hit-boss-melee --topic "Hit needed vs raid boss" \
@@ -64,7 +72,9 @@ For "best" choices (which talent or item is strongest), Blizzard is not the judg
 Before you answer:
 
 1. Run `report` and make sure every number and fact you plan to say is VERIFIED, or is labeled as CONFLICT or UNCONFIRMED in your answer.
-2. Reopen the sources behind each number and confirm the page says exactly that value, for WoW Forever, with that date. If your tools allow starting a separate checker that did not do the research, give it the ledger and the draft answer and have it do this step; otherwise do it yourself as a fresh pass.
+2. Confirm each number against its source, for WoW Forever, with that date.
+   - **Quick answer:** check against the pages you already opened. Reopen a page only if you are unsure what it said.
+   - **Full plan:** reopen the sources behind each number. If your tools allow starting a separate checker that did not do the research, give it the ledger and the draft answer and have it do this step; otherwise do it yourself as a fresh pass.
 3. Re-run any calculation through `scripts/stat_math.py` and compare to the draft.
 4. Remove or relabel anything that fails. Never keep a fact because it "seems right".
 

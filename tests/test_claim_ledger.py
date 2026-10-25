@@ -31,6 +31,29 @@ def status(c):
     return cl.judge(c, FLOOR, TODAY)[0]
 
 
+class ValueMatching(unittest.TestCase):
+    def test_same_percent_written_differently(self):
+        for v in ("8%", "8 %", "8 percent", "8 per cent", "8.0%", "8.00 pct", "8 Percent"):
+            self.assertEqual(cl.norm(v), "8%", v)
+
+    def test_trailing_zeros_only(self):
+        self.assertEqual(cl.norm("10.50%"), "10.5%")
+        self.assertEqual(cl.norm("1.05%"), "1.05%")
+        self.assertEqual(cl.norm("100%"), "100%")
+
+    def test_different_numbers_stay_different(self):
+        self.assertNotEqual(cl.norm("8%"), cl.norm("9%"))
+        self.assertNotEqual(cl.norm("8%"), cl.norm("80%"))
+
+    def test_priority_order_ignores_spacing_and_case(self):
+        self.assertEqual(cl.norm("Hit > Strength"), cl.norm("hit>strength"))
+        self.assertNotEqual(cl.norm("Hit > Strength"), cl.norm("Strength > Hit"))
+
+    def test_differently_written_values_verify_together(self):
+        c = claim(src("8%", "Method", 2, "2026-10-06"), src("8 percent", "Icy Veins", 2, "2026-10-07"))
+        self.assertEqual(status(c), "VERIFIED")
+
+
 class Verified(unittest.TestCase):
     def test_one_current_blizzard_source(self):
         s, value, _ = cl.judge(claim(src("8%", "Blizzard", 1, "2026-10-01")), FLOOR, TODAY)
@@ -110,6 +133,20 @@ class Stale(unittest.TestCase):
                   changed="2026-08-01")
         self.assertEqual(cl.claim_cutoff(c, FLOOR), FLOOR)
         self.assertEqual(status(c), "STALE")
+
+
+class AfterLaunch(unittest.TestCase):
+    """Launch is recorded per topic, not as a reset of the starting point."""
+    AFTER_LAUNCH = date(2026, 11, 10)
+
+    def test_beta_guides_still_count_when_launch_did_not_change_topic(self):
+        c = claim(src("8%", "Method", 2, "2026-10-06"), src("8%", "Icy Veins", 2, "2026-10-07"))
+        self.assertEqual(cl.judge(c, FLOOR, self.AFTER_LAUNCH)[0], "VERIFIED")
+
+    def test_beta_guides_stale_when_launch_changed_topic(self):
+        c = claim(src("8%", "Method", 2, "2026-10-06"), src("8%", "Icy Veins", 2, "2026-10-07"),
+                  changed="2026-11-04")
+        self.assertEqual(cl.judge(c, FLOOR, self.AFTER_LAUNCH)[0], "STALE")
 
 
 class CommandLine(unittest.TestCase):

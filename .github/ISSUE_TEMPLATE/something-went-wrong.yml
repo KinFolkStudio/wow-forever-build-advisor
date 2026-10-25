@@ -1,0 +1,50 @@
+name: Something went wrong
+description: The skill did not work, got stuck, was too slow, or was confusing.
+title: "Problem: "
+labels: [bug]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for testing. A few quick answers help a lot. Never include passwords or personal details.
+  - type: input
+    id: version
+    attributes:
+      label: Which version?
+      description: The end of an answer says "Build Advisor" and a number. Write "not sure" if it did not get that far.
+      placeholder: "1.1.0"
+    validations:
+      required: true
+  - type: textarea
+    id: asked
+    attributes:
+      label: What did you ask?
+      placeholder: "What is the stat priority for a Holy Priest in WoW Forever?"
+    validations:
+      required: true
+  - type: textarea
+    id: happened
+    attributes:
+      label: What happened?
+      description: For example, an error, it never finished, it did not use the skill, or the answer was hard to follow.
+    validations:
+      required: true
+  - type: input
+    id: chat-link
+    attributes:
+      label: Link to the chat (optional, very helpful)
+      description: In Claude, click Share at the top of the chat, then copy the link. Anyone with the link can read that chat, so only share chats without personal details.
+  - type: dropdown
+    id: plan
+    attributes:
+      label: Which Claude plan?
+      options: [Free, Pro, Max, Team or Enterprise, Not sure]
+    validations:
+      required: true
+  - type: dropdown
+    id: device
+    attributes:
+      label: Where were you using Claude?
+      options: [Web browser on a computer, Claude desktop app, Phone app, Other]
+    validations:
+      required: true

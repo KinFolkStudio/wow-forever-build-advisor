@@ -75,16 +75,18 @@ Start a new chat and just ask. Mentioning "WoW Forever" helps Claude know to use
 - "Make me a table comparing the talent choices for Retribution Paladin."
 - "Make me a document with my full Hunter plan that I can keep."
 
-The first time, it may ask you a few quick questions (your class, spec, level, professions, and how you like to play) so its advice fits you. If you just want a quick answer, say "no questions, just tell me."
+It answers first. If it needs something to answer (usually your class and spec), it asks only that. Afterwards it offers to tailor the advice to how you play. If you would rather skip that, say "no questions, just tell me."
 
-Good answers take a little time because it is checking several websites. Give it a minute or two.
+It tells you what it is checking before it starts. A single question usually takes about a minute. A full build or plan checks many more websites and can take a few minutes.
+
+**Right now, before the game launches:** the WoW Forever beta is closed, so answers are based on the final beta build. Some things may change at launch.
 
 ## How to read its answers
 
 - **Confirmed:** Blizzard says it, or at least two trusted guide sites agree, and they are newer than the last game change to that topic.
 - **Trusted sources disagree:** It shows you both choices, who suggests each one, the pros and cons, and suggests you test both (for example, on a training dummy).
 - **Not confirmed yet:** It could not check this well enough today. Ask again in a few days, especially right after a patch.
-- Every answer ends with a **Checked on** date and links to its sources, so you can see exactly where the information came from.
+- Every answer ends with a **Checked on** line (the date, the game version, and the skill version, such as "Build Advisor 1.1.0") and links to its sources, so you can see exactly where the information came from.
 
 When there are several good choices, it will not pick one for you. It shows what each choice is good at and what kind of player it fits, then lets you decide.
 
@@ -105,6 +107,19 @@ It does not use Reddit, player forum posts, YouTube creators, or guides for othe
 | It can't look anything up | Turn on **Web search** (Step 5). |
 | Lots of "not confirmed yet" | Normal right after a patch or during testing. Guide sites usually catch up within a few days. Ask again later. |
 | You hit a message limit | The free plan has a limit that resets every five hours. Each web search counts toward it, and a full build answer checks many websites, so free players can reach the limit sooner than in a normal chat. Wait and try again, ask about one topic at a time (for example, only talents), or consider a paid plan if you use it a lot. |
+| Something else | Tell us (see "Found a problem?" below). |
+
+## Found a problem?
+
+You can report it on this page. You need a free GitHub account.
+
+1. Go to **[Report a problem](https://github.com/KinFolkStudio/wow-forever-build-advisor/issues/new/choose)**.
+2. Pick **Something went wrong** (it broke, got stuck, or was confusing) or **Wrong information** (it said something about the game that is not right).
+3. Fill in the short form. The most helpful thing you can add is a link to the chat: in Claude, click **Share** at the top of the chat and copy the link. Anyone with that link can read the chat, so only share chats without personal details.
+
+## Getting a newer version
+
+Look at the end of any answer: the **Checked on** line shows your version, for example "Build Advisor 1.1.0". The [list of changes](CHANGELOG.md) shows the newest version and what changed. To update, download the file again (Step 3), then in Claude delete the old skill and upload the new one (Step 4).
 
 ## Privacy
 
@@ -119,7 +134,7 @@ What's inside:
 | File | What it does |
 | --- | --- |
 | `wow-forever-build-advisor/SKILL.md` | The main instructions Claude follows |
-| `wow-forever-build-advisor/references/onboarding.md` | The quick player interview |
+| `wow-forever-build-advisor/references/onboarding.md` | The questions it asks to tailor advice to you |
 | `wow-forever-build-advisor/references/sources.md` | Which websites are trusted |
 | `wow-forever-build-advisor/references/verification.md` | The fact-checking rules |
 | `wow-forever-build-advisor/references/output-style.md` | How answers are written so anyone aged 8 to 80 can follow them |
@@ -127,10 +142,9 @@ What's inside:
 | `wow-forever-build-advisor/scripts/stat_math.py` | Does all the math |
 | `wow-forever-build-advisor.zip` | The ready-to-upload skill file |
 | `tests/` | Automatic checks for the two Python tools (not part of the skill) |
+| `CHANGELOG.md` | What changed in each version |
 
-**To get a newer version:** download the `.zip` file again (Step 3), then in Claude delete the old skill and upload the new one (Step 4).
-
-**If you change the skill yourself:** after editing anything in the `wow-forever-build-advisor` folder, rebuild the `.zip` file. Right-click the folder itself (not the files inside it). On Windows, choose **Compress to**, then **ZIP file**. On a Mac, choose **Compress**. Name the new file exactly `wow-forever-build-advisor.zip`. To run the automatic checks, open a terminal in this folder and run `python -m unittest discover tests`.
+**If you change the skill yourself:** raise the version number near the top of `SKILL.md`, add a line to `CHANGELOG.md`, then rebuild the `.zip` file. Right-click the folder itself (not the files inside it). On Windows, choose **Compress to**, then **ZIP file**. On a Mac, choose **Compress**. Name the new file exactly `wow-forever-build-advisor.zip`. To run the automatic checks, open a terminal in this folder and run `python -m unittest discover tests`.
 
 **Using a different AI assistant:** you can read these files and adapt them. The fact-checking and math tools are plain Python with nothing extra to install.
 

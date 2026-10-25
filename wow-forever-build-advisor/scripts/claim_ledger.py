@@ -10,6 +10,7 @@ Tiers: 1 = Blizzard, 2 = trusted guide or data site, 3 = not trusted.
 import argparse
 import json
 import os
+import re
 import sys
 from datetime import date
 
@@ -24,7 +25,17 @@ def parse_day(text, label):
 
 
 def norm(value):
-    return "".join(str(value).lower().split())
+    """Reduce a value to a form where the same answer always matches.
+
+    Ignores case and spaces, reads "percent", "per cent", and "pct" as "%",
+    and drops trailing zeros after a decimal point, so "8 percent", "8.0%",
+    and "8%" all count as the same value.
+    """
+    text = str(value).lower()
+    text = re.sub(r"\s*\b(?:per\s*cent|percent|pct)\b", "%", text)
+    text = re.sub(r"(\d+)\.(\d*?)0+(?!\d)",
+                  lambda m: m.group(1) + ("." + m.group(2) if m.group(2) else ""), text)
+    return "".join(text.split())
 
 
 def load(path):

@@ -37,11 +37,17 @@ For each option give: what it is in one sentence, good at, not as good at, and w
 
 When sources disagree: "Icy Veins suggests X. Method suggests Y. Both are current. Try both and compare your results."
 
+## Starting every answer
+
+Before you research, one line on what you are checking and about how long it takes (see "The order of work" in `SKILL.md`). Keep it to one line; do not narrate each search.
+
 ## Ending every answer
 
 End with:
 
-**Checked on:** [today's date], against WoW Forever [version or patch].
+**Checked on:** [today's date], against WoW Forever [the final beta build before launch, or the patch name after launch]. Build Advisor [skill version from `SKILL.md`].
+
+Until launch, add one line: "This is based on the final beta build. Some things may change when the game launches."
 
 **Sources:** each source as a link with its title and date.
 
